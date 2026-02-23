@@ -10,14 +10,35 @@
 VR_Project/
 ├── ForceController/          # 力反馈控制模块
 │   ├── Esp32Demo/           # ESP32 固件
+│   │   └── src/
+│   │       └── main.cpp     # 电机控制主程序
 │   └── UnityProject/        # Unity 项目
+│       └── Assets/
+│           └── Scripts/
+│               ├── SerialController.cs    # 串口通信基类
+│               ├── AddForce.cs            # 力反馈控制
+│               └── Monitor.cs             # 数据监控
 ├── OppositeDirController/    # 位置控制模块
 │   ├── ESP32code/           # ESP32 固件
+│   │   └── src/
+│   │       └── main.cpp     # 电机控制主程序
 │   └── UnityProject/        # Unity 项目
+│       └── Assets/
+│           └── Scripts/
+│               ├── SerialController.cs    # 串口通信基类
+│               └── PosController.cs       # 位置控制
 └── UnidirController/         # 电机位置读取模块
     ├── ESP32code/           # ESP32 固件
+    │   └── src/
+    │       └── main.cpp     # 电机控制主程序
     └── UnityProject/        # Unity 项目
+        └── Assets/
+            └── Scripts/
+                ├── SerialController.cs    # 串口通信基类
+                └── ReadData.cs            # 电机位置数据读取
 ```
+
+注：ForceController模块的功能尚不稳定，容易出现边界抖动，建议转动电机时将电机输出摇臂和底座握紧，且用力不用过大。在unity中设置碰撞扭矩值小一些也能一定程度上缓解该问题。
 
 ## 安装教程
 
@@ -99,6 +120,8 @@ VR_Project/
 - Port Name: 串口名称（默认 COM3）
 - Baud Rate: 波特率（默认 115200）
 - Target Cube: Unity 中的目标物体（电机的位置数据要同步到该物体上）
+
+注：ForceController模块的功能尚不稳定，容易出现边界抖动，建议转动电机时将电机输出摇臂和底座握紧，且用力不用过大。在unity中设置碰撞扭矩值小一些也能一定程度上缓解该问题。
 
 ### AddForce：实现力反馈控制，根据碰撞状态发送扭矩指令。
 主要功能:
